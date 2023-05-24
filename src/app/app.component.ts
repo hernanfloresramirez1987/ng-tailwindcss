@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { AuthService } from './services/auth.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'myapp';
+  title = 'myapptailwind';
+
+  constructor(private themeService: ThemeService) {
+    //this.isDarkMode = themeService.getIsDarkMode();
+  }
+
+  toggleTheme(): void {
+    //this.themeService.toggleTheme();
+    //this.isDarkMode = this.themeService.getIsDarkMode();
+  }
 }
