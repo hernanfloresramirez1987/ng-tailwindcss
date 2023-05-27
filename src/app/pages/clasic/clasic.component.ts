@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, SidebarComponent, HeaderComponent],
   templateUrl: './clasic.component.html',
   styleUrls: ['./clasic.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export default class ClasicComponent implements OnInit {
 
@@ -54,7 +53,8 @@ export default class ClasicComponent implements OnInit {
       .subscribe(res => { //console.log(res.data)
         this.totalpages = [];
         this.currentPage = page;
-        this.users = res.data;
+        console.log(res.data)
+        this.users = [...res.data];
         this.forpage = res.per_page;
         for(let i=0; i<res.total_pages; i++) {
           this.totalpages.push(i);

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal, ChangeDetectionStrategy, computed } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from 'src/app/models/user';
 import { ClasicService } from 'src/app/services/clasic.service';
@@ -24,6 +24,11 @@ export default class CurrentComponent implements OnInit {
 
   currentService = inject(CurrentService);
 
+  constructor() {
+    effect(() => {
+      console.log(this.users());
+    })
+  }
 
   ////////////////
   newTask = signal('');
@@ -78,27 +83,30 @@ export default class CurrentComponent implements OnInit {
     await this.userService.loadPage(page)
       .subscribe(res => {
         console.log(res);
-        this.currentPage.update(t => page);
+        this.currentPage.update(() => page);
         this.forpage.update(() => res.per_page);
         this.users.update(currentUsers => [...currentUsers, ...res.data]);
       });
   }
-  updateUser(user: User) {
-    this.users.mutate(users => {
-      console.log(users);
+  async updateUser(user: User) {
+    await this.users.mutate(users => {
       const existId = this.users().find((t) => t.id === user.id);
       if(existId) {
+        //console.log(resp);
+        existId.first_name = "user.first_nameppppppp";
         this.currentService
           .updateUser(existId.id, user)
           .subscribe(resp => {
-            console.log(resp);
-            existId.first_name = "user.first_name";
+            // existId.email = "user.email";
+            // existId.avatar = "user.avatar";
+            console.log(existId)
+          }, error => {console.log(error);
+          }, () => {
             existId.last_name = "user.last_name";
-            existId.email = "user.email";
-            existId.avatar = "user.avatar";
+            console.log('terminado');
           });
       }
-      return this.users();
+      //return this.users();
     })
   }
 }

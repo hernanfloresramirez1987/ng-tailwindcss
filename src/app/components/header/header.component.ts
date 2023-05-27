@@ -28,6 +28,7 @@ export class HeaderComponent {
   }
 
   togglePagesMenu(){
+    console.log('........................................................................');
     this.isProfileMenuOpen.mutate((res) => {
       if(res) false;
       true;
@@ -60,9 +61,9 @@ export class HeaderComponent {
 
   }
   toggleSideMenu() {
-    this.isSidebarMenuOpen.mutate((res) => {
-      if(res) false;
-      true;
+    this.isSidebarMenuOpen.mutate(res => {
+      if(res) return false;
+      return true;
     })
   }
 }

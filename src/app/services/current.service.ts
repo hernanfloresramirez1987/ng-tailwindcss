@@ -22,4 +22,10 @@ export class CurrentService {
       "job": body.job
     });
   }
+
+  async updateUser2(id: number, body: any): Promise<responseUserUpdate> {
+    return new Promise((resolv, reject) => {
+
+    })
+  }
 }

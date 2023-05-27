@@ -10,12 +10,13 @@ import { Component, signal } from '@angular/core';
 })
 export class SidebarComponent {
 
-  isProfileMenuOpen = signal<boolean>(false)
+  isPagesMenuOpen = signal<boolean>(false);
 
   togglePagesMenu(){
-    this.isProfileMenuOpen.mutate((res) => {
-      if(res) false;
-      true;
+    console.log(this.isPagesMenuOpen());
+    this.isPagesMenuOpen.update(res => {
+      if(res) return false;
+      return true;
     })
   }
 }

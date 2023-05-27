@@ -1,30 +1,19 @@
 <section class="h-screen">
   <div class="container h-full px-6 py-24">
-    <div
-      class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between"
-    >
+    <div class="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between" >
       <!-- Left column container with background-->
       <div class="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
-        <img
-          src="../../../assets/shipedge-logo.png"
-          class="w-full"
-          alt="Phone image"
-        />
+        <img src="../../../assets/shipedge-logo.png" class="w-full" alt="Phone image" />
       </div>
-
       <!-- Right column container with form -->
       <div class="md:w-8/12 lg:ml-6 lg:w-5/12">
-
-
 
         <form [formGroup]="fg">
           <div class="mb-5">
             <label class="block text-grey-darker text-sm font-bold mb-2" for="username">
               Username
             </label>
-            <input
-              type="text"
-              formControlName="username"
+            <input type="text" formControlName="username"
               [ngClass]="(fg.get('username')?.errors && (fg.get('username')?.dirty || fg.get('username')?.errors && fg.get('username')?.touched))?
                 'rounded-full w-full py-2 px-3 text-grey-darker block mb-2 text-sm font-medium dark:text-red-500 bg-red-50 border border-red-500 text-red-900 placeholder-red-700 ':
                 'shadow appearance-none border rounded-full w-full py-2 px-3 text-grey-darker'"
@@ -57,13 +46,11 @@
             <label class="block text-grey-darker text-sm font-bold mb-2" for="password">
               Password
             </label>
-            <input
-              formControlName="password"
-              class="shadow appearance-none rounded-full w-full py-2 px-3 text-grey-darker"
+            <input type="password" formControlName="password"
               [ngClass]="(fg.get('password')?.errors && (fg.get('password')?.dirty || fg.get('password')?.touched) && fg.get('password')?.errors)?
                 'rounded-full w-full py-2 px-3 text-grey-darker block mb-2 text-sm font-medium dark:text-red-500 bg-red-50 border border-red-500 text-red-900 placeholder-red-700 ':
                 'shadow appearance-none border rounded-full w-full py-2 px-3 text-grey-darker'"
-              type="password" placeholder="•••••••••">
+              placeholder="Password" >
             <div *ngIf="fg.get('password')?.errors && (fg.get('password')?.dirty || fg.get('password')?.touched)">
               <div *ngIf="fg.get('password')?.errors?.['required']">
                 <small class="mt-2 text-sm text-red-600 dark:text-red-500">
